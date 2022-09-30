@@ -12,6 +12,12 @@ jobs:
     - name: setup Docker Build
       uses: docker/setup-buildx-action@v2.0.0
       
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3.0.0
+      with:
+     # Artifact name
+        name: programa
+
     - name: Docker Login
   # You may pin to the exact commit or the version.
   # uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
@@ -21,3 +27,18 @@ jobs:
         username: mrezende1
       # Password or personal access token used to log against the Docker registry
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+        
+        
+    - name: Build and push Docker images
+  # You may pin to the exact commit or the version.
+  # uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94
+      uses: docker/build-push-action@v3.1.1
+      with:
+    # Build's context is the set of files located in the specified PATH or URL
+        context: .
+    # Path to the Dockerfile
+        file: ./Dockerfile
+    # Push is a shorthand for --output=type=registry
+        push: true
+    # List of tags
+        tags: mrezende1/go_ci:${{github.ref_name}}
