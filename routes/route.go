@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/guilhermeonrails/api-go-gin/controllers"
 )
-
+ 
 func HandleRequest() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
