@@ -4,7 +4,7 @@ import (
 	"gopkg.in/validator.v2"
 	"gorm.io/gorm"
 )
-
+ 
 type Aluno struct {
 	gorm.Model
 	Nome string `json:"nome" validate:"nonzero"`
